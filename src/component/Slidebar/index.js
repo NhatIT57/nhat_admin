@@ -100,13 +100,14 @@ function Slidebar(props) {
                   isShow === false ? "notify-menu block-notify" : "notify-menu"
                 }
               >
+                  <div className="title-notify">Thông báo</div>
                 {token.length > 0 ? (
                   token.map((item) => {
                     return (
                       <div
                         key={`notify-${item.id}`}
                         onClick={() => handleXem(item.id)}
-                      >{`Có thêm một đơn hàng Mã đơn hàng: ${item.id}`}</div>
+                      >{`Có một đơn hàng mới Mã đơn hàng: ${item.id}`}</div>
                     );
                   })
                 ) : (

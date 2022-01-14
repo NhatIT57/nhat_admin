@@ -189,6 +189,17 @@ ul {
     pointer-events: none;
 }
 
+.title-notify{
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
+.title-notify:hover{
+    background: unset !important;
+}
+
 @media screen and (min-width: 768px)and(max-width: 1200px) {
     .navbar-base {
         width: 100%;

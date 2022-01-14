@@ -18,6 +18,9 @@ import {
   ListAlt,
   Timer10,
   RecordVoiceOver,
+  ColorLens,
+  AspectRatio,
+  TrendingUp
 } from "@material-ui/icons";
 import Login from "./../commom/Login/index";
 import Taikhoan from "./../component/Page/TaiKhoan/index";
@@ -69,14 +72,14 @@ export const ROUTES = [
     name: "Màu Sắc",
     exact: false,
     component: MauSac,
-    icon: <AddShoppingCart> </AddShoppingCart>,
+    icon: <ColorLens> </ColorLens>,
   },
   {
     path: "/Size",
     name: "Size",
     exact: false,
     component: Size,
-    icon: <AddShoppingCart> </AddShoppingCart>,
+    icon: <AspectRatio> </AspectRatio>,
   },
   {
     path: "/khachhang",
@@ -112,7 +115,7 @@ export const ROUTES = [
     name: "Thống kê",
     exact: false,
     component: ThongKe,
-    icon: <ListAlt> </ListAlt>,
+    icon: <TrendingUp> </TrendingUp>,
   },
   {
     path: "/taikhoan",
