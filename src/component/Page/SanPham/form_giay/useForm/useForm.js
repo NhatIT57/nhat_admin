@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Moment from 'moment';
 
+
 const useForm = (callback, validate, apiUpload, validateMS) => {
     const [errors, setErrors] = useState({});
     const [errorsMS, setErrorsMS] = useState({});
@@ -16,6 +17,7 @@ const useForm = (callback, validate, apiUpload, validateMS) => {
         mo_ta: '',
         id_loai_giay: 0,
         gia_ban: '',
+        gia_ban_goc: '',
         trang_thai: 1,
         date_create: new Date(),
         date_update: new Date(),

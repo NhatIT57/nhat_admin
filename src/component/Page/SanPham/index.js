@@ -484,6 +484,7 @@ function SanPham(props) {
               <th>Tên loại giày</th>
               <th>Hình ảnh</th>
               <th>giá bán</th>
+              <th>giá bán gốc</th>
               <th>Điều khiển</th>
               <th>Trạng thái</th>
             </tr>
@@ -491,23 +492,29 @@ function SanPham(props) {
           <tbody>
             {dataList
               ? dataList.map((post, index) => {
-                const d = post.hinh_anh.split(",");
-              let arr = [];
-              for (var i = 0; i < d.length; i++) {
-                arr.push(d[i]);
-              }
+                  const d = post.hinh_anh.split(",");
+                  let arr = [];
+                  for (var i = 0; i < d.length; i++) {
+                    arr.push(d[i]);
+                  }
                   return (
                     <tr key={post.id}>
                       <td>{index + 1}</td>
                       <td className="width-lsp">{post.id}</td>
                       <td>{post.ten_giay}</td>
-                      <td> <img
+                      <td>
+                        {" "}
+                        <img
                           className="img"
                           src={`http://localhost:8080/images/${arr[0]}`}
-                        /></td>
+                        />
+                      </td>
                       <td>{`${post.gia_ban
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</td>
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</td>
+                      <td>{`${post.gia_ban_goc
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</td>
                       <td className="width-lsp">
                         {post.trang_thai === 1 ? (
                           <Button

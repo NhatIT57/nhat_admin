@@ -35,3 +35,31 @@ export const getGiayHotByMonth = (data) => {
 export const getLoaiGiayHotByMonth = (data) => {
     return authAxios.post(`/api/thong_ke/getLoaiGiayHotByMonth`, data);
 };
+
+export const getDoanhThu = (data) => {
+    return authAxios.post(`/api/thong_ke/getDoanhThu`, data);
+};
+
+export const getDoanhThuMonth = (data) => {
+    return authAxios.post(`/api/thong_ke/getDoanhThuMonth`, data);
+};
+
+export const getDoanhThuTongTien = (data) => {
+    return authAxios.post(`/api/thong_ke/getDoanhThuTongTien`, data);
+};
+
+export const getDoanhThuTotal = (data) => {
+    return authAxios.post(`/api/thong_ke/getDoanhThuTotal`, data);
+};
+
+export const getTonKho = (data) => {
+    return authAxios.post(`/api/thong_ke/getTonKho`, data);
+};
+
+export const getTonKhoTongTien = () => {
+    return authAxios.get(`/api/thong_ke/getTonKhoTongTien`);
+};
+
+export const getTonKhoTotal = () => {
+    return authAxios.get(`/api/thong_ke/getTonKhoTotal`);
+};

@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import Table from "react-bootstrap/Table";
 
 function DonHang(props) {
+  const history = useHistory();
   const { modalAtionCrearotors } = props;
   const { showModal, changeModalContent, changeModalTitle } =
     modalAtionCrearotors;
@@ -26,11 +27,13 @@ function DonHang(props) {
   const [activePage, setActivePage] = useState(1);
   const [allPage, setAllPage] = useState(0);
   const { trang_thai } = dataPage;
-  const history = useHistory();
 
   const [dataTam, setDataTam] = useState({});
   const [show, setShow] = useState(false);
   const [nd, setNd] = useState("");
+
+  const [search, setSearch] = useState("");
+
   const handleClose = () => {
     setShow(false);
   };
@@ -52,7 +55,6 @@ function DonHang(props) {
           setActivePage(parseInt(props.match.params.page));
 
           api.pageDonHang({ offset: pageN }).then((res) => {
-            const { data } = res;
             if (res.status === 200) {
               setData(res.data.data);
               api.getList().then((resP) => {
@@ -86,7 +88,6 @@ function DonHang(props) {
               trang_thai: props.match.params.trang_thai,
             })
             .then((res) => {
-              const { data } = res;
               if (res.status === 200) {
                 setData(res.data.data);
                 api
@@ -95,7 +96,6 @@ function DonHang(props) {
                     trang_thai: props.match.params.trang_thai,
                   })
                   .then((res) => {
-                    const { data } = res;
                     if (res.status === 200) {
                       setAllPage(res.data.data.length);
                     }
@@ -104,7 +104,6 @@ function DonHang(props) {
             });
         } else {
           api.pageDonHang({ offset: 0 }).then((res) => {
-            const { data } = res;
             if (res.status === 200) {
               setData(res.data.data);
               api.getList().then((resP) => {
@@ -123,6 +122,7 @@ function DonHang(props) {
       setData([]);
     };
   }, [props.match.params]);
+
   function handlePageChange(pageNumber) {
     setActivePage(pageNumber);
     if (props.match.params.trang_thai) {
@@ -133,11 +133,42 @@ function DonHang(props) {
       history.push(`/donhang/page=${pageNumber}`);
     }
   }
+
   function onchangeSelect(e) {
     e.persist();
-    setDataPage((dataPage) => ({ ...dataPage, status: e.target.value }));
+    setDataPage((dataPage) => ({ ...dataPage, trang_thai: e.target.value }));
     history.push(`/donhang/trang_thai=${e.target.value}&&page=${1}`);
   }
+
+  function handlePageChangeSearch(e) {
+    e.persist();
+    setSearch(e.target.value);
+  }
+
+  useEffect(() => {
+    let delayDebounceFn = null;
+    if (search !== "") {
+      delayDebounceFn = setTimeout(() => {
+        const d = { id: parseInt(search) };
+        api
+          .pageSearchByID(d)
+          .then((response) => {
+            if (response.status === 200) {
+              if (response.data.data.length > 0) {
+                setData(response.data.data);
+              }
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, 1000);
+    }
+    // if (search === "") {
+    //   history.push(`/DonHang`);
+    // }
+    return () => clearTimeout(delayDebounceFn);
+  }, [search]);
   return (
     <div className="donhang">
       <Modal
@@ -159,9 +190,9 @@ function DonHang(props) {
 
       <div className="donhang-content">
         <div className="search_reservation">
-          <div className="search_RVT">
+          <div className="search_RVT d-flex justify-content-between">
             <div className="form-group">
-              <label className="title_TT">Tình trạng</label>
+              <label className="title_TT">Tình trạng : </label>
               <select
                 onChange={(e) => onchangeSelect(e)}
                 className="custom-select-product"
@@ -171,8 +202,19 @@ function DonHang(props) {
                 <option value="ALL">ALL</option>
                 <option value={0}>Đặt hàng</option>
                 <option value={1}>Xác nhận</option>
-                <option value={3}>Hoàn thành</option>
+                <option value={2}>Hoàn thành</option>
+                <option value={3}>Hủy</option>
               </select>
+            </div>
+            <div className="d-flex">
+              <label className="title_TT">Tìm kiếm : </label>
+              <input
+                placeholder="Nhập mã đơn hàng cần tìm"
+                className="custom-select-product"
+                type="text"
+                value={search}
+                onChange={handlePageChangeSearch}
+              />
             </div>
           </div>
         </div>
@@ -186,7 +228,7 @@ function DonHang(props) {
                   <th scope="col">Số điện thoại</th>
                   <th scope="col">Địa chỉ</th>
                   <th scope="col">Thời gian đặt hàng</th>
-                  <th scope="col">Tình trạng</th>
+                  {/* <th scope="col">Tình trạng</th> */}
                 </tr>
               </thead>
               <tbody>
@@ -212,10 +254,10 @@ function DonHang(props) {
                         <td>
                           {moment(item.thoi_gian_dat)
                             .utc()
-                            .format("YYYY-MM-DD")}
+                            .format("DD-MM-YYYY")}
                         </td>
 
-                        <td>{item.trang_thai}</td>
+                        {/* <td>{item.trang_thai}</td> */}
                       </tr>
                     );
                   })
@@ -227,7 +269,7 @@ function DonHang(props) {
           </div>
         </div>
         <div className="pagination">
-          <Pagination
+         {search === '' ? <Pagination
             prevPageText="prev"
             nextPageText="next"
             activePage={activePage}
@@ -235,7 +277,7 @@ function DonHang(props) {
             totalItemsCount={allPage}
             pageRangeDisplayed={6}
             onChange={handlePageChange}
-          />
+          />:<></>}
         </div>
       </div>
     </div>

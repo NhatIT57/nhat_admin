@@ -119,7 +119,7 @@ function Component_type(props) {
     setIndexTamMS(-1);
   }
 
-  const { id_g, ten_giay, mo_ta, date_create, gia_ban, id_loai_giay } = data;
+  const { id_g, ten_giay, mo_ta, date_create, gia_ban, gia_ban_goc, id_loai_giay } = data;
 
   function submit() {
     let ktCS = ListGiay.filter(
@@ -194,6 +194,7 @@ function Component_type(props) {
                   mo_ta: "",
                   id_loai_giay: 0,
                   gia_ban: 0,
+                  gia_ban_goc: 0,
                 }));
                 setMauSac([]);
                 setGiayEdittingNull();
@@ -229,6 +230,7 @@ function Component_type(props) {
                     mo_ta: "",
                     id_loai_giay: 0,
                     gia_ban: 0,
+                    gia_ban_goc: 0,
                   }));
                   setMauSac([]);
                   setGiayEdittingNull();
@@ -274,6 +276,7 @@ function Component_type(props) {
                               mo_ta: "",
                               id_loai_giay: 0,
                               gia_ban: 0,
+                              gia_ban_goc: 0,
                             }));
                             setMauSac([]);
                             setGiayEdittingNull();
@@ -382,6 +385,7 @@ function Component_type(props) {
                                   mo_ta: "",
                                   id_loai_giay: 0,
                                   gia_ban: 0,
+                                  gia_ban_goc: 0,
                                 }));
                               }
                             })
@@ -415,6 +419,7 @@ function Component_type(props) {
       mo_ta: giayEditting.mo_ta,
       id_loai_giay: giayEditting.id_loai_giay,
       gia_ban: giayEditting.gia_ban,
+      gia_ban_goc: giayEditting.gia_ban_goc,
       date_update: Moment(date_create).format("YYYY-MM-DD HH:mm"),
     }));
     let mau = [];
@@ -933,6 +938,18 @@ function Component_type(props) {
               onChange={(e) => onChangeInput(e)}
             />
             {errors.gia_ban && <p className="error">{errors.gia_ban}</p>}
+          </div>
+          <div className="form-group">
+            <label>Giá bán gốc</label>
+            <input
+              type="number"
+              id="gia_ban_goc"
+              name="gia_ban_goc"
+              value={gia_ban_goc}
+              className="form-control validate"
+              onChange={(e) => onChangeInput(e)}
+            />
+            {errors.gia_ban_goc && <p className="error">{errors.gia_ban_goc}</p>}
           </div>
           <div className="form-group">
             <label> Thương hiệu </label>

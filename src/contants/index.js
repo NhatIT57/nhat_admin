@@ -11,6 +11,8 @@ import Size from "./../component/Page/Size/index";
 import HomeIcon from "@material-ui/icons/Home";
 import XemDonHang from "./../component/Page/XemDonHang/index";
 import ThongKe from "./../component/Page/ThongKe/index";
+import DoanhThu from "./../component/Page/DoanhThu/index";
+import TonKho from "./../component/Page/TonKho/index";
 import {
   AssignmentTurnedIn,
   AddShoppingCart,
@@ -245,7 +247,18 @@ export const ROUTESS = [
     name: "Thống kê",
     exact: false,
     component: ThongKe,
-    icon: <ListAlt> </ListAlt>,
+  },
+  {
+    path: "/DoanhThu",
+    name: "Doanh Thu",
+    exact: false,
+    component: DoanhThu,
+  },
+  {
+    path: "/TonKho",
+    name: "Tồn kho",
+    exact: false,
+    component: TonKho,
   },
   {
     path: "/taikhoan",

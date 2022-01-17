@@ -30,10 +30,15 @@ function XemDonHang(props) {
 
   function closeDidalog() {
     api
-      .updateStatus({
+      .update({
         id: parseInt(props.match.params.id),
         trang_thai: status,
-        date_udate: moment(new Date()).format("YYYY-MM-DD HH:mm"),
+        id_khach_hang: data.id_khach_hang,
+        ten_nguoi_nhan: data.ten_nguoi_nhan,
+        sdt_nguoi_nhan: data.sdt_nguoi_nhan,
+        dia_chi_nguoi_nhan: data.dia_chi_nguoi_nhan,
+        thoi_gian_dat: moment(data.thoi_gian_dat).format("YYYY-MM-DD HH:mm"),
+        date_update: moment(new Date()).format("YYYY-MM-DD HH:mm"),
       })
       .then((response) => {
         if (response.status === 200) {
@@ -91,7 +96,7 @@ function XemDonHang(props) {
   }
   function onUpdateTT() {
     setShow(true);
-    setNd(`Bạn có chắc chắn muốn chỉnh sửa trạng thái đơn hàng ${status}`);
+    setNd(`Bạn có chắc chắn muốn chỉnh sửa đơn hàng`);
   }
   return (
     <div className="donhang menumonan">
@@ -123,7 +128,7 @@ function XemDonHang(props) {
                   className="btn btn-secondary mr-2"
                   onClick={onCancle}
                 >
-                  hủy bỏ
+                  Trở về
                 </button>
                 <button
                   type="button"
@@ -159,7 +164,7 @@ function XemDonHang(props) {
                 <tr>
                   <td>Thời gian đặt</td>
                   <td colSpan={5}>
-                    {moment(data.tg_dathang).utc().format("YYYY-MM-DD HH:mm")}
+                    {moment(data.tg_dathang).utc().format("DD-MM-YYYY HH:mm")}
                   </td>
                   {/* <td>Thời gian Giao hàng</td>
                   <td colSpan={3}>

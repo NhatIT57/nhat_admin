@@ -8,8 +8,8 @@ import { IconContext } from "react-icons";
 import * as routes from "./../../contants/index";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { useHistory } from "react-router-dom";
+import { TrendingUp } from "@material-ui/icons";
 const client = new W3CWebSocket("ws://127.0.0.1:8080");
-
 function Slidebar(props) {
   let history = useHistory();
   const [token, setToken] = useState([]);
@@ -100,7 +100,7 @@ function Slidebar(props) {
                   isShow === false ? "notify-menu block-notify" : "notify-menu"
                 }
               >
-                  <div className="title-notify">Thông báo</div>
+                <div className="title-notify">Thông báo</div>
                 {token.length > 0 ? (
                   token.map((item) => {
                     return (
@@ -122,22 +122,45 @@ function Slidebar(props) {
         </div>
       </div>
       <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-        <ul className="nav-menu-items" onClick={showSidebar}>
+        <ul className="nav-menu-items">
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">
               <AiIcons.AiOutlineClose />
             </Link>
           </li>
           {routes.ROUTES.map((item, index) => {
+            if(item.name !== "Thống kê")
             return (
-              <li key={index} className="row">
+              
+                <li key={index} className="row">
                 <Link to={item.path}>
-                  <div id="icon"> {item.icon} </div>{" "}
-                  <div id="title"> {item.name} </div>
+                  <div id="icon">  {item.name !== "Thống kê" ? (
+                    <div id="title"> {item.icon} </div>
+                  ) : null}</div>
+                  {item.name !== "Thống kê" ? (
+                    <div id="title"> {item.name} </div>
+                  ) : null}
                 </Link>
               </li>
+              
             );
           })}
+          <li className="row">
+            <div>
+              <Link id="title" className="text-lefts"><TrendingUp className="mx-2"></TrendingUp>Thống kê</Link>
+              <div className="ml-3">
+              <Link id="title" className="dropdown-item text-lefts" to="/ThongKe">
+                  Các sản phẩm bán chạy
+                </Link>
+                <Link id="title" className="dropdown-item text-lefts" to="/DoanhThu">
+                  Thống kê doanh thu
+                </Link>
+                <Link id="title" className="dropdown-item text-lefts" to="/TonKho">
+                  Tồn kho
+                </Link>
+              </div>
+            </div>
+          </li>
         </ul>
       </nav>
     </IconContext.Provider>

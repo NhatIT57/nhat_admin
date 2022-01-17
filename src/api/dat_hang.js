@@ -37,7 +37,7 @@ export const getList = () => {
 };
 
 export const update = (data) => {
-    return authAxios.post(`/api/dat_hang`, data);
+    return authAxios.post(`/api/dat_hang/update`, data);
 };
 
 export const pageDonHang = (data) => {
@@ -47,6 +47,12 @@ export const pageDonHang = (data) => {
 export const pageSearchDonHang = (data) => {
     return authAxios.post(`/api/dat_hang/pageSearch`, data);
 };
+
+
+export const pageSearchByID = (data) => {
+    return authAxios.post(`/api/dat_hang/pageSearchByID`, data);
+};
+
 
 export const getChiTietDonHangByID = (data) => {
     return authAxios.post(`/api/dat_hang/getChiTietDonHangByID`, data);
