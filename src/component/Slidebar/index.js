@@ -9,7 +9,7 @@ import * as routes from "./../../contants/index";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { useHistory } from "react-router-dom";
 import { TrendingUp } from "@material-ui/icons";
-const client = new W3CWebSocket("ws://127.0.0.1:8080");
+const client = new W3CWebSocket("https://nhat-api.herokuapp.com");
 function Slidebar(props) {
   let history = useHistory();
   const [token, setToken] = useState([]);
