@@ -11,6 +11,7 @@ import ctkhuyenmai from './CT_khuyen_mai';
 import khachhang from './khach_hang';
 import ctDonHang from './ct_don_hang';
 import dathang from './dat_hang';
+import tinh from './tinh_thanh_pho';
 
 const appReducers = combineReducers({
     login: login,
@@ -25,6 +26,7 @@ const appReducers = combineReducers({
     khachhang,
     dathang,
     ctDonHang,
+    tinh
 });
 
 export default appReducers;

@@ -60,6 +60,7 @@ function SanPham(props) {
   const [allPage, setAllPage] = useState(0);
   const [searchSP, setSearchSP] = useState("");
   const [tamS, setTamS] = useState(false);
+  const [soluong, setSoluong]=useState(false);
   function onupdateGiay(data) {
     setGiayEdittings(data.id);
     const { showModalGiay, changeModalTitleGiay, changeModalContentGiay } =
@@ -85,91 +86,112 @@ function SanPham(props) {
     fetchPostsList();
   }, []);
   useEffect(() => {
-    if (!props.match.params.th) {
-      setActivePage(1);
-      let pageN = 0;
-      pageN = 0;
-      setDataPage((dataPage) => ({ ...dataPage, offset: pageN }));
-      apiGiay
-        .pageGiay(dataPage)
-        .then((response) => {
-          if (response.status === 200) {
-            setDataList(response.data.data);
-            setAllPage(ListGiay.length);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      let pageN = 0;
-      if (parseInt(props.match.params.page) === 1) {
+   
+    if(props.match.params.soluong === 'true'){
+      console.log(props.match.params.soluong)
+        setSoluong(true);
+        apiGiay
+          .soLuongGiay()
+          .then((response) => {
+            console.log(response)
+            if (response.status === 200) {
+              setDataList(response.data.data);
+              // setAllPage(ListGiay.length);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }else{
+      setSoluong(false);
+      if (!props.match.params.th) {
+        setActivePage(1);
+        let pageN = 0;
         pageN = 0;
+        setDataPage((dataPage) => ({ ...dataPage, offset: pageN }));
+        apiGiay
+          .pageGiay(dataPage)
+          .then((response) => {
+            if (response.status === 200) {
+              setDataList(response.data.data);
+              setAllPage(ListGiay.length);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       } else {
-        pageN = parseInt(props.match.params.page) * 4 - 4;
+        let pageN = 0;
+        if (parseInt(props.match.params.page) === 1) {
+          pageN = 0;
+        } else {
+          pageN = parseInt(props.match.params.page) * 4 - 4;
+        }
+        setActivePage(parseInt(props.match.params.page));
+        setDataPage((dataPage) => ({
+          ...dataPage,
+          offset: parseInt(props.match.params.page),
+          id_loai_giay: parseInt(props.match.params.th),
+        }));
+        const d = {
+          limit: 4,
+          offset: pageN,
+          id_loai_giay: parseInt(props.match.params.th),
+        };
+        apiGiay
+          .pageGiay(d)
+          .then((response) => {
+            if (response.status === 200) {
+              setDataList(response.data.data);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+  
+        if (parseInt(dataPage.id_loai_giay) === 0) {
+          setAllPage(ListGiay.length);
+        } else {
+          const dataNew = ListGiay.filter(
+            (item) =>
+              parseInt(item.id_loai_giay) === parseInt(props.match.params.th)
+          );
+          setAllPage(dataNew.length);
+        }
       }
-      setActivePage(parseInt(props.match.params.page));
-      setDataPage((dataPage) => ({
-        ...dataPage,
-        offset: parseInt(props.match.params.page),
-        id_loai_giay: parseInt(props.match.params.th),
-      }));
-      const d = {
-        limit: 4,
-        offset: pageN,
-        id_loai_giay: parseInt(props.match.params.th),
-      };
-      apiGiay
-        .pageGiay(d)
-        .then((response) => {
-          if (response.status === 200) {
-            setDataList(response.data.data);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-      if (parseInt(dataPage.id_loai_giay) === 0) {
-        setAllPage(ListGiay.length);
-      } else {
-        const dataNew = ListGiay.filter(
-          (item) =>
-            parseInt(item.id_loai_giay) === parseInt(props.match.params.th)
+      if (props.match.params.searchSP) {
+        setSearchSP(props.match.params.searchSP);
+        setActivePage(parseInt(props.match.params.page));
+        let pageN = 0;
+        if (parseInt(props.match.params.page) === 1) {
+          pageN = 0;
+        } else {
+          pageN = parseInt(props.match.params.page) * 4 - 4;
+        }
+        const d = {
+          ten_giay: props.match.params.searchSP,
+          limit: 4,
+          offset: pageN,
+        };
+        apiGiay
+          .pageSearchGiay(d)
+          .then((response) => {
+            if (response.status === 200) {
+              setDataList(response.data.data);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        const dataNew = ListGiay.filter((item) =>
+          item.ten_giay.includes(searchSP.toLowerCase())
         );
         setAllPage(dataNew.length);
       }
     }
-    if (props.match.params.searchSP) {
-      setSearchSP(props.match.params.searchSP);
-      setActivePage(parseInt(props.match.params.page));
-      let pageN = 0;
-      if (parseInt(props.match.params.page) === 1) {
-        pageN = 0;
-      } else {
-        pageN = parseInt(props.match.params.page) * 4 - 4;
-      }
-      const d = {
-        ten_giay: props.match.params.searchSP,
-        limit: 4,
-        offset: pageN,
-      };
-      apiGiay
-        .pageSearchGiay(d)
-        .then((response) => {
-          if (response.status === 200) {
-            setDataList(response.data.data);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      const dataNew = ListGiay.filter((item) =>
-        item.ten_giay.includes(searchSP.toLowerCase())
-      );
-      setAllPage(dataNew.length);
-    }
+    
   }, [ListGiay]);
+
   function searchSanPham(e) {
     e.persist();
     setSearchSP(e.target.value);
@@ -285,6 +307,7 @@ function SanPham(props) {
     }
     setShow(false);
   }
+
   function updateTrangThai(data) {
     let t = 0;
     if (data.trang_thai === 0) {
@@ -421,6 +444,10 @@ function SanPham(props) {
     }
   }
 
+  function hethang(){
+    history.push(`/SanPham/soluong=${true}`);
+  }
+
   return (
     <div className="product-admin">
       <Modal
@@ -443,6 +470,9 @@ function SanPham(props) {
         <div className="headder-product-admin">
           <Button className="add-product" variant="success" onClick={themGiay}>
             Thêm giày
+          </Button>
+          <Button className="add-product" variant="success" onClick={hethang}>
+            Hết hàng
           </Button>
           <div className="search-thuonghieu">
             <label>Tìm kiếm</label>
@@ -555,7 +585,7 @@ function SanPham(props) {
           </tbody>
         </Table>
         <div className="pagination">
-          <Pagination
+                {soluong===false? <Pagination
             prevPageText="prev"
             nextPageText="next"
             activePage={activePage}
@@ -563,7 +593,7 @@ function SanPham(props) {
             totalItemsCount={allPage}
             pageRangeDisplayed={4}
             onChange={handlePageChange}
-          />
+          />:<></>}
         </div>
       </div>
     </div>

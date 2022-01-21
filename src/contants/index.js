@@ -13,6 +13,8 @@ import XemDonHang from "./../component/Page/XemDonHang/index";
 import ThongKe from "./../component/Page/ThongKe/index";
 import DoanhThu from "./../component/Page/DoanhThu/index";
 import TonKho from "./../component/Page/TonKho/index";
+import TinhThanhPho from "./../component/Page/TinhThanhPho/index";
+
 import {
   AssignmentTurnedIn,
   AddShoppingCart,
@@ -22,8 +24,10 @@ import {
   RecordVoiceOver,
   ColorLens,
   AspectRatio,
-  TrendingUp
+  TrendingUp,
+  AddLocation
 } from "@material-ui/icons";
+
 import Login from "./../commom/Login/index";
 import Taikhoan from "./../component/Page/TaiKhoan/index";
 import NotFound from "./../component/Page/notFound/index";
@@ -97,13 +101,20 @@ export const ROUTES = [
     component: DonHang,
     icon: <ListAlt> </ListAlt>,
   },
-  // {
-  //   path: "/Khuyenmai",
-  //   name: "Khuyến mãi",
-  //   exact: false,
-  //   component: KhuyenMai,
-  //   icon: <Timer10> </Timer10>,
-  // },
+  {
+    path: "/Khuyenmai",
+    name: "Khuyến mãi",
+    exact: false,
+    component: KhuyenMai,
+    icon: <Timer10> </Timer10>,
+  },
+  {
+    path: "/VanChuyen",
+    name: "Vận chuyển",
+    exact: false,
+    component: KhuyenMai,
+    icon: <AddLocation> </AddLocation>,
+  },
   // {
   //   path: "/phanhoi",
   //   name: "Phản hồi",
@@ -158,6 +169,13 @@ export const ROUTESS = [
     icon: <AddShoppingCart> </AddShoppingCart>,
   },
   {
+    path: "/SanPham/soluong=:soluong",
+    name: "Sản phẩm",
+    exact: false,
+    component: SanPham,
+    icon: <AddShoppingCart> </AddShoppingCart>,
+  },
+  {
     path: "/SanPham",
     name: "Sản phẩm",
     exact: false,
@@ -204,6 +222,24 @@ export const ROUTESS = [
     icon: <PersonAdd> </PersonAdd>,
   },
   {
+    path: "/VanChuyen/page=:page&&search=:search",
+    name: "Vận chuyển",
+    exact: false,
+    component: TinhThanhPho,
+  },{
+    path: "/VanChuyen/page=:page",
+    name: "Vận chuyển",
+    exact: false,
+    component: TinhThanhPho,
+  },
+  {
+    path: "/VanChuyen",
+    name: "Vận chuyển",
+    exact: false,
+    component: TinhThanhPho,
+    icon: <PersonAdd> </PersonAdd>,
+  },
+  {
     path: "/donhang/page=:page",
     name: "Đơn hàng",
     exact: false,
@@ -228,13 +264,13 @@ export const ROUTESS = [
     exact: false,
     component: XemDonHang,
   },
-  // {
-  //   path: "/Khuyenmai",
-  //   name: "Khuyến mãi",
-  //   exact: false,
-  //   component: KhuyenMai,
-  //   icon: <Timer10> </Timer10>,
-  // },
+  {
+    path: "/Khuyenmai",
+    name: "Khuyến mãi",
+    exact: false,
+    component: KhuyenMai,
+    icon: <Timer10> </Timer10>,
+  },
   // {
   //   path: "/phanhoi",
   //   name: "Phản hồi",

@@ -29,6 +29,7 @@ function Thongke(props) {
     });
     await api.getTonKhoTongTien().then((res) => {
       if (res.status === 200) {
+        console.log(res)
         setDataAll(res.data.data);
       }
     });
@@ -53,23 +54,58 @@ function Thongke(props) {
     <div className="homePage-admin">
       <div className="homepage">
         <div className="title-homePage fs-4 fw-bold"> Thống kê tồn kho</div>
-    
-        <div className="statistical-homepage mt-5">
+        <div className="statistical-homepage">
           <div className="giayByMonth">
           {dataAll.length > 0 ? (
               <div className="p-5">
-                <div className="fw-bold">{`Tổng tiền bán: ${dataAll[0].tong_tien
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</div>
-                <div className="fw-bold">{`Tổng tiền bán: ${dataAll[0].tong_tien_goc
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</div>
-                <div className="fw-bold">{`Tổng tiền gốc:  ${
-                 ( dataAll[0].tong_tien -
-                  dataAll[0].tong_tien_goc)
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-                }đ`}</div>
+                <div className="category-homePage">
+                  <div className="product-homePage shadow">
+                    <div className="vertical">
+                      <div className="base">
+                        <div className="left">
+                          <div className="title-homePage-small">
+                            Số lượng
+                          </div>
+                          <div className="amount-homePage">{`${dataAll[0].so_luong
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</div>
+                        </div>
+                        <div className="righ"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="product-homePage shadow">
+                    <div className="vertical">
+                      <div className="base">
+                        <div className="left">
+                          <div className="title-homePage-small">
+                            Tổng tiền gốc
+                          </div>
+                          <div className="amount-homePage">{`${dataAll[0].tong_tien_goc
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</div>
+                        </div>
+                        <div className="righ"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="product-homePage shadow">
+                    <div className="vertical">
+                      <div className="base">
+                        <div className="left">
+                          <div className="title-homePage-small">
+                            Tổng tiền tồn kho
+                          </div>
+                          <div className="amount-homePage">{`${dataAll[0].tong_tien
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</div>
+                        </div>
+                        <div className="righ"></div>
+                      </div>
+                    </div>
+                  </div>
+                 
+                </div>
               </div>
             ) : (
               <></>

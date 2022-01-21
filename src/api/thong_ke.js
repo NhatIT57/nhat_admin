@@ -40,6 +40,14 @@ export const getDoanhThu = (data) => {
     return authAxios.post(`/api/thong_ke/getDoanhThu`, data);
 };
 
+export const getVanChuyen = (data) => {
+    return authAxios.post(`/api/thong_ke/getVanChuyen`, data);
+};
+
+export const getDoanhThuLG = (data) => {
+    return authAxios.post(`/api/thong_ke/getDoanhThuLG`, data);
+};
+
 export const getDoanhThuMonth = (data) => {
     return authAxios.post(`/api/thong_ke/getDoanhThuMonth`, data);
 };

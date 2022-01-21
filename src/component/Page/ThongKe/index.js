@@ -15,11 +15,6 @@ function Thongke(props) {
   const [toDate, settoDate] = useState(new Date());
   const [fromDate, setfromDate] = useState(new Date());
 
-
-  const [toDateLG, settoDateLG] = useState(new Date());
-  const [fromDateLG, setfromDateLG] = useState(new Date());
-
- 
   const handleformtodate = (date) => {
     settoDate(date);
   };
@@ -29,29 +24,20 @@ function Thongke(props) {
   };
 
 
-  const handleformtodateLG = (date) => {
-    settoDateLG(date);
-  };
-
-  const handleformfromdateLG = (date) => {
-    setfromDateLG(date);
-  };
-
   async function submitSP(){
-    await api.getGiayHotByMonth({to_date: Moment(toDate).format('YYYY-MM-DD'), form_date: Moment(fromDate).format('YYYY-MM-DD') }).then((res) => {
+    await api.getGiayHotByMonth({to_date: Moment(toDate).format('YYYY-MM-DD'), from_date: Moment(fromDate).format('YYYY-MM-DD') }).then((res) => {
+     console.log(res)
       if (res.status === 200) {
         setDataGiayByMonth(res.data.data);
       }
     });
-  }
-
-  async function submitLG(){
-    await api.getLoaiGiayHotByMonth({to_date: Moment(toDateLG).format('YYYY-MM-DD'), form_date: Moment(fromDateLG).format('YYYY-MM-DD') }).then((res) => {
+    await api.getLoaiGiayHotByMonth({to_date: Moment(toDate).format('YYYY-MM-DD'), from_date: Moment(fromDate).format('YYYY-MM-DD') }).then((res) => {
       if (res.status === 200) {
         setDataLoaiGiayByMonth(res.data.data);
       }
     });
   }
+
   return (
     <div className="homePage-admin">
       <div className="homepage">
@@ -108,7 +94,9 @@ function Thongke(props) {
                         <td>{index + 1}</td>
                         <td>{item.ten_giay}</td>
                         <td>{item.so_luong}</td>
-                        <td>{item.tong_tien}</td>
+                        <td>{`${(item.tong_tien)
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</td>
                       </tr>
                     );
                   })
@@ -123,7 +111,7 @@ function Thongke(props) {
             </Table>
           </div>
           <div className="mt-5">
-          <div className="d-flex">
+          {/* <div className="d-flex">
               <div className="form-group d-flex mr-3 align-items-center">
                 <div className="mr-1">Từ</div>
                <DatePicker
@@ -149,7 +137,7 @@ function Thongke(props) {
                 />
               </div>
               <button type="button" className="btn btn-primary" onClick={submitLG}>Thực hiện</button>
-            </div>
+            </div> */}
             <Table striped bordered hover variant="dark" className="table_type">
               <thead>
                 <tr>
@@ -172,7 +160,9 @@ function Thongke(props) {
                         <td>{index + 1}</td>
                         <td>{item.ten_loai_giay}</td>
                         <td>{item.so_luong}</td>
-                        <td>{item.tong_tien}</td>
+                        <td>{`${(item.tong_tien)
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}đ`}</td>
                       </tr>
                     );
                   })

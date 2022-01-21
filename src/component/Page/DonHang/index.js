@@ -169,6 +169,8 @@ function DonHang(props) {
     // }
     return () => clearTimeout(delayDebounceFn);
   }, [search]);
+
+  console.log(data)
   return (
     <div className="donhang">
       <Modal
@@ -249,7 +251,7 @@ function DonHang(props) {
                             item.ten_nguoi_nhan
                           )}
                         </td>
-                        <td>{item.sdt_nguoi_han}</td>
+                        <td>{item.sdt_nguoi_nhan}</td>
                         <td>{item.dia_chi_nguoi_nhan}</td>
                         <td>
                           {moment(item.thoi_gian_dat)

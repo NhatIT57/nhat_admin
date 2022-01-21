@@ -15,6 +15,7 @@ const useForm = (callback, validate, apiUpload) => {
         trang_thai: 1,
         date_create: new Date(),
         date_update: new Date(),
+        trang_thai: 1
     });
 
     const [addCTKM, setAddCTKM] = useState([]);

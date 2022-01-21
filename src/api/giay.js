@@ -53,6 +53,10 @@ export const getGiay = () => {
     return authAxios.get(`/api/giay`);
 };
 
+export const soLuongGiay = () => {
+    return authAxios.get(`/api/giay/SoLuongGiay`);
+};
+
 export const updateGiay = (data) => {
     return authAxios.patch(`/api/giay`, data);
 };

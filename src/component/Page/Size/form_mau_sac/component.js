@@ -110,7 +110,7 @@ function Component_mau_sac(props) {
 			<form className="row tm-edit-product-form" onSubmit={handleSubmit}>
 				<div className="col-xl-6 col-lg-6 col-md-12">
 					<div className="form-group mb-3">
-						<label> Màu sắc </label>
+						<label> Size giày </label>
 						<input
 							id="ten_size"
 							name="ten_size"
