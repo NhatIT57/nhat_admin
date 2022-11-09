@@ -7,10 +7,12 @@ import {
   ListAlt,
 } from "@material-ui/icons";
 import * as api from "./../../../api/thong_ke";
+import * as apiQuangCao from "./../../../api/quang_cao";
 
 function TrangChu(props) {
   const [dataGiay, setDataGiay] = useState(0);
   const [dataLoaiGiay, setDataLoaiGiay] = useState(0);
+  const [dataQuanCao, setDataQuangCao] = useState([]);
   useEffect(() => {
     getData();
   }, []);
@@ -26,6 +28,12 @@ function TrangChu(props) {
         setDataLoaiGiay(res.data.data[0].tong);
       }
     });
+    await apiQuangCao.getQuangCao().then((res) => {
+      if (res.status === 200) {
+        setDataQuangCao(res.data.data);
+      }
+    });
+    
   }
   return (
     <div className="homePage-admin">

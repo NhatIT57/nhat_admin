@@ -6,11 +6,12 @@ import { Link, Redirect } from "react-router-dom";
 import "./Slidebar.scss";
 import { IconContext } from "react-icons";
 import * as routes from "./../../contants/index";
-import { w3cwebsocket as W3CWebSocket } from "websocket";
 import { useHistory } from "react-router-dom";
 import { TrendingUp } from "@material-ui/icons";
-const client = new W3CWebSocket("https://nhat-api.herokuapp.com");
+// import WebSocket from 'ws';
+
 function Slidebar(props) {
+  // const client =  new WebSocket('ws://localhost:8081').client;
   let history = useHistory();
   const [token, setToken] = useState([]);
   const [isShow, setIsShow] = useState(false);
@@ -27,32 +28,32 @@ function Slidebar(props) {
     }
   }, []);
 
-  useEffect(() => {
-    client.onopen = () => {};
-    get();
-  });
+  // useEffect(() => {
+  //   client.onopen = () => {};
+  //   get();
+  // });
 
-  async function get() {
-    client.onmessage = (message) => {
-      const dataFromServer = JSON.parse(message.data);
-      if (dataFromServer.type === "messages") {
-        const token = localStorage.getItem("notify");
-        let stemp = [];
-        if (token) {
-          stemp = JSON.parse(token);
-          stemp.push(dataFromServer.msg);
-          localStorage.removeItem("notify");
-          localStorage.setItem("notify", JSON.stringify(stemp));
-          setToken(stemp);
-        } else {
-          stemp.push(dataFromServer.msg);
-          localStorage.removeItem("notify");
-          localStorage.setItem("notify", JSON.stringify(stemp));
-          setToken(stemp);
-        }
-      }
-    };
-  }
+  // async function get() {
+  //   client.onmessage = (message) => {
+  //     const dataFromServer = JSON.parse(message.data);
+  //     if (dataFromServer.type === "messages") {
+  //       const token = localStorage.getItem("notify");
+  //       let stemp = [];
+  //       if (token) {
+  //         stemp = JSON.parse(token);
+  //         stemp.push(dataFromServer.msg);
+  //         localStorage.removeItem("notify");
+  //         localStorage.setItem("notify", JSON.stringify(stemp));
+  //         setToken(stemp);
+  //       } else {
+  //         stemp.push(dataFromServer.msg);
+  //         localStorage.removeItem("notify");
+  //         localStorage.setItem("notify", JSON.stringify(stemp));
+  //         setToken(stemp);
+  //       }
+  //     }
+  //   };
+  // }
   function logOut() {
     localStorage.removeItem("token");
     return (

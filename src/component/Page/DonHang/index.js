@@ -81,7 +81,6 @@ function DonHang(props) {
           } else {
             pageN = pageNumber * 2 - 2;
           }
-
           api
             .pageDonHang({
               offset: pageN,
@@ -103,7 +102,21 @@ function DonHang(props) {
               }
             });
         } else {
-          api.pageDonHang({ offset: 0 }).then((res) => {
+          let pageN = 0;
+          if(props.match.params.page){
+            let pageNumber = parseInt(props.match.params.page);
+            setDataPage({
+              offset: pageN,
+            });
+  
+            if (pageNumber === 1) {
+              pageN = 0;
+            } else {
+              pageN = pageNumber * 2 - 2;
+            }
+          }
+         
+          api.pageDonHang({ offset: pageN }).then((res) => {
             if (res.status === 200) {
               setData(res.data.data);
               api.getList().then((resP) => {
@@ -170,7 +183,6 @@ function DonHang(props) {
     return () => clearTimeout(delayDebounceFn);
   }, [search]);
 
-  console.log(data)
   return (
     <div className="donhang">
       <Modal

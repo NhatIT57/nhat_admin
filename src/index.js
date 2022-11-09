@@ -5,8 +5,7 @@ import * as serviceWorker from './serviceWorker';
 //  import './genetator';
 
 ReactDOM.render(
-    <App />
-  ,
+    <App />,
   document.getElementById('root')
 );
 

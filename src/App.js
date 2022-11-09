@@ -3,13 +3,14 @@ import "./App.scss";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import * as contant from "./contants/index";
 import Adminroute from "./commom/AdminRoute/index";
-import ReactNotifications from "react-notifications-component";
+import {ReactNotifications} from "react-notifications-component";
 import TypeLoaiGiay from "./component/Page/LoaiSanPham/form_loai_giay/index";
 import FormGiay from "./component/Page/SanPham/form_giay/index";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import MessengerCustomerChat from 'react-messenger-customer-chat';
 import { Provider } from "react-redux";
 import configstore from "./redux/configstore";
+
 const store = configstore();
 
 function App(props) {
@@ -49,7 +50,7 @@ function App(props) {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <ReactNotifications> </ReactNotifications>
+      <ReactNotifications> </ReactNotifications>
         <div className="tong">
           <Switch>
             {renderAdminRouteLG()} {renderAdminRoute()}

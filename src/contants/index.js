@@ -41,7 +41,7 @@ import NotFound from "./../component/Page/notFound/index";
 // 	},
 //   ];
 
-export const API_ENPOINT = "https://nhat-api.herokuapp.com";
+export const API_ENPOINT = "http://localhost:8080";
 export const ROUTESLG = [
   {
     path: "/dangnhap",
