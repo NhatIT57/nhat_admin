@@ -1,9 +1,9 @@
 import axios from "axios";
-
+import axiosService from "./axiosService";
 const token = JSON.parse(localStorage.getItem("token"));
 var url_upload = "api/upload";
 var URL = "http://localhost:8080";
-var url_them_giay = "api/quang_cao";
+var url_quang_cao = "api/quang_cao";
 
 // var url_get_loia_giay = ''
 const authAxios = axios.create({
@@ -39,4 +39,20 @@ export const upload = (file) => {
 
 export const getQuangCao = () => {
     return authAxios.get(`/api/quang_cao`);
+};
+
+export const ThemQuangCao = (data) => {
+    return axiosService.post(`${URL}/${url_quang_cao}`, data);
+};
+
+export const pageQuangCao = (data) => {
+    return authAxios.post(`/api/quang_cao/page`, data);
+};
+
+export const updateQuangCao = (data) => {
+    return authAxios.patch(`/api/quang_cao`, data);
+};
+
+export const deleteQuangCao = (data) => {
+    return authAxios.post(`/api/quang_cao/delete`, data);
 };

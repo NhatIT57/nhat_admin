@@ -14,6 +14,7 @@ import ThongKe from "./../component/Page/ThongKe/index";
 import DoanhThu from "./../component/Page/DoanhThu/index";
 import TonKho from "./../component/Page/TonKho/index";
 import TinhThanhPho from "./../component/Page/TinhThanhPho/index";
+import QuangCao from "./../component/Page/QuangCao/index";
 
 import {
   AssignmentTurnedIn,
@@ -57,6 +58,12 @@ export const ROUTES = [
     name: "Trang chủ",
     exact: true,
     component: TrangChu,
+    icon: <HomeIcon> </HomeIcon>,
+  },{
+    path: "/QuangCao",
+    name: "Quảng Cáo ",
+    exact: true,
+    component: QuangCao,
     icon: <HomeIcon> </HomeIcon>,
   },
   {
@@ -145,6 +152,13 @@ export const ROUTESS = [
     name: "Trang chủ",
     exact: true,
     component: TrangChu,
+    icon: <HomeIcon> </HomeIcon>,
+  },
+  {
+    path: "/QuangCao",
+    name: "Quảng Cáo ",
+    exact: true,
+    component: QuangCao,
     icon: <HomeIcon> </HomeIcon>,
   },
   {
