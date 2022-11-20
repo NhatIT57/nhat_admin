@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "./component_type.scss";
 import * as apiUpload from "../../../../api/loai_giay";
-import * as apiQuangCao from "../../../../api/quang_cao";
+import * as apiTinTuc from "../../../../api/tin_tuc";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as loaigiayAction from "../../../../actions/loai_giay";
@@ -13,16 +13,50 @@ import * as notify from "../../../../contants/notifycation";
 import { Button } from "react-bootstrap";
 import Moment from "moment";
 import Modal from "react-bootstrap/Modal";
-
+import JoditEditor from "jodit-react";
+import { useRef } from "react";
 function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
   const { loagiayCreator, loaiGiayEditting, ListLoaiGiay } = props;
   const { modalFormCreator } = props;
   const { hideModal } = modalFormCreator;
   const { updateLoaiGiay, themLoaiGiaysuccess } = loagiayCreator;
-  const { onUpload, handleChange, handleSubmit, data, setData, errors } =
-    useForm(submit, validate, apiUpload);
+  const {
+    onUpload,
+    onChangeInput,
+    handleChange,
+    handleSubmit,
+    data,
+    setData,
+    errors,
+  } = useForm(submit, validate, apiUpload);
   const [show, setShow] = useState(false);
   const [nd, setNd] = useState("");
+  const { ten_tin_tuc, tom_tat, noi_dung } = data;
+
+  const editor = useRef(null);
+
+  const config = {
+    readonly: false,
+        askBeforePasteFromWord: false,
+        askBeforePasteHTML: false,
+        toolbar: true,
+        spellcheck: true,
+        language: "en",
+        toolbarButtonSize: "medium",
+        toolbarAdaptive: false,
+        showCharsCounter: true,
+        showWordsCounter: true,
+        showXPathInStatusbar: false,
+        askBeforePasteHTML: true,
+        askBeforePasteFromWord: true,
+        //defaultActionOnPaste: "insert_clear_html",
+        uploader: {
+          insertImageAsBase64URI: true
+        },
+        height: 842
+        
+  };
+
   const handleClose = () => {
     setShow(false);
   };
@@ -36,11 +70,11 @@ function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
       setData({ ...dataEdit });
     }
   }, [dataEdit]);
-
+  console.log(data)
   function submit() {
     if (data.id) {
-      apiQuangCao
-        .updateQuangCao(data)
+      apiTinTuc
+        .updateTinTuc(data)
         .then((response) => {
           if (response.status === 200) {
             notify.notificatonSuccess("Chỉnh sửa thành công");
@@ -49,8 +83,10 @@ function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
             setData((data) => ({
               ...data,
               id: 0,
+              ten_tin_tuc: "",
+              tom_tat: "",
+              noi_dung: "",
               hinh_anh: "",
-              trang_thai: 1,
               date_create: new Date(),
               date_update: new Date(),
             }));
@@ -60,8 +96,8 @@ function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
           console.log(error);
         });
     } else {
-      apiQuangCao
-        .ThemQuangCao(data)
+      apiTinTuc
+        .ThemTinTuc(data)
         .then((response) => {
           if (response.status === 200) {
             notify.notificatonSuccess("Thêm thành công");
@@ -70,8 +106,10 @@ function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
             setData((data) => ({
               ...data,
               id: 0,
+              ten_tin_tuc: "",
+              tom_tat: "",
+              noi_dung: "",
               hinh_anh: "",
-              trang_thai: 1,
               date_create: new Date(),
               date_update: new Date(),
             }));
@@ -102,6 +140,53 @@ function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
         </Modal.Footer>
       </Modal>
       <form className="row tm-edit-product-form" onSubmit={handleSubmit}>
+        <div className="col-xl-12 col-lg-12 col-md-12">
+          <div className="form-group">
+            <label>Tin tức</label>
+            <input
+              id="ten_tin_tuc"
+              name="ten_tin_tuc"
+              type="text"
+              value={ten_tin_tuc}
+              className="form-control validate"
+              onChange={(e) => onChangeInput(e)}
+            />
+            {errors.ten_tin_tuc && (
+              <p className="error">{errors.ten_tin_tuc}</p>
+            )}
+          </div>
+          <div className="form-group">
+            <label> Tóm tắt tin tức </label>
+            <textarea
+              id="tom_tat"
+              name="tom_tat"
+              value={tom_tat}
+              className="form-control validate"
+              rows="3"
+              onChange={(e) => onChangeInput(e)}
+            ></textarea>
+            {errors.tom_tat && <p className="error">{errors.tom_tat}</p>}
+          </div>
+          <div className="form-group">
+            <label> Nội dung</label>
+            <JoditEditor
+          ref={editor}
+          value={noi_dung}
+          config={config}
+          tabIndex={1} // tabIndex of textarea
+          onBlur={(newContent) =>
+            setData((data) => ({
+              ...data,
+              noi_dung: newContent,
+            }))
+          } // preferred to use only this option to update the content for performance reasons
+          onChange={(newContent) => {}}
+        />
+            {errors.noi_dung && <p className="error">{errors.noi_dung}</p>}
+          </div>
+        </div>
+       
+
         <div className="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
           <div className="tm-product-img-dummy mx-auto">
             {!data.hinh_anh ? (

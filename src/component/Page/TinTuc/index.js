@@ -10,7 +10,7 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ComponentType from "./form_loai_giay/component";
 import * as apiUpload from "../../../api/loai_giay";
-import * as apiQuangCao from "../../../api/quang_cao";
+import * as apiTinTuc from "../../../api/tin_tuc";
 import * as notify from "../../../contants/notifycation";
 import Modal from "react-bootstrap/Modal";
 import Moment  from 'moment';
@@ -34,7 +34,7 @@ function LoaiSanPham(props) {
   },[]);
 
   async function loadData(){
-    apiQuangCao.getQuangCao(dataPage).then((res)=>{
+    apiTinTuc.getTinTuc(dataPage).then((res)=>{
       if(res.data.success === 1){
         setData(res.data.data);
       }
@@ -54,8 +54,8 @@ function LoaiSanPham(props) {
 
   function closeDidalog() {
     if (dataTam.id) {
-      apiQuangCao
-        .deleteQuangCao(dataTam)
+      apiTinTuc
+        .deleteTinTuc(dataTam)
         .then((response) => {
           if (response.status === 200) {
             if (response.data.success === 500) {
@@ -156,7 +156,7 @@ function LoaiSanPham(props) {
       <div className="type_product">
         <div className="type_product_search">
           <Button variant="success" onClick={ThemLoaiGiay}>
-            Thêm quảng cáo
+           Thêm tin tức
           </Button>
         </div>
         <Table
@@ -168,8 +168,8 @@ function LoaiSanPham(props) {
         >
           <thead>
             <tr>
-              <th> STT </th> <th> Hình ảnh </th> <th> Trạng thái </th>
-              <th>Ngày tạo</th>
+              <th> STT </th> <th> Tên tin tức </th> <th> Tóm tắt</th>
+              <th>Hình ảnh</th>
               <th className="width-DK"> Điều khiển </th>
             </tr>
           </thead>
@@ -181,26 +181,17 @@ function LoaiSanPham(props) {
                     <tr key={index + 1}>
                       <td> {index + 1} </td>
                       <td>
+                        {post.ten_tin_tuc}
+                      </td>
+                      <td>
+                        {post.tom_tat}
+                      </td>
+                      <td>
                         <img
                           src={`http://localhost:8080/images/${post.hinh_anh}`}
                           alt=""
                         />
                       </td>
-                      {post.trang_thai === 1 ? (
-                          <Button
-                            onClick={() => updateTrangThai(post)}
-                            variant="success"
-                          >
-                            Còn hoạt động
-                          </Button>
-                        ) : (
-                          <Button
-                            onClick={() => updateTrangThai(post)}
-                            variant="danger"
-                          >
-                            Không còn hoạt động
-                          </Button>
-                        )}
                       <td>{Moment(post.date_create).format("YYYY-MM-DD")}</td>
                       <td className="Controls_type">
                         <Button

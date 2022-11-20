@@ -15,6 +15,7 @@ import DoanhThu from "./../component/Page/DoanhThu/index";
 import TonKho from "./../component/Page/TonKho/index";
 import TinhThanhPho from "./../component/Page/TinhThanhPho/index";
 import QuangCao from "./../component/Page/QuangCao/index";
+import TinTuc from "./../component/Page/TinTuc/index";
 
 import {
   AssignmentTurnedIn,
@@ -64,6 +65,13 @@ export const ROUTES = [
     name: "Quảng Cáo ",
     exact: true,
     component: QuangCao,
+    icon: <HomeIcon> </HomeIcon>,
+  },
+  {
+    path: "/TinTuc",
+    name: "Tin Tức",
+    exact: true,
+    component: TinTuc,
     icon: <HomeIcon> </HomeIcon>,
   },
   {
@@ -159,6 +167,13 @@ export const ROUTESS = [
     name: "Quảng Cáo ",
     exact: true,
     component: QuangCao,
+    icon: <HomeIcon> </HomeIcon>,
+  },
+  {
+    path: "/TinTuc",
+    name: "Tin Tức",
+    exact: true,
+    component: TinTuc,
     icon: <HomeIcon> </HomeIcon>,
   },
   {
