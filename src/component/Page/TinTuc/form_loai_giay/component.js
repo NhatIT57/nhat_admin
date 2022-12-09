@@ -47,8 +47,6 @@ function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
         showCharsCounter: true,
         showWordsCounter: true,
         showXPathInStatusbar: false,
-        askBeforePasteHTML: true,
-        askBeforePasteFromWord: true,
         //defaultActionOnPaste: "insert_clear_html",
         uploader: {
           insertImageAsBase64URI: true
@@ -70,7 +68,7 @@ function Component_type({ loadData = () => {}, dataEdit = {}, ...props }) {
       setData({ ...dataEdit });
     }
   }, [dataEdit]);
-  console.log(data)
+  console.log(data.noi_dung)
   function submit() {
     if (data.id) {
       apiTinTuc
