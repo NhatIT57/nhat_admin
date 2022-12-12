@@ -29,7 +29,10 @@ import {
   TrendingUp,
   AddLocation
 } from "@material-ui/icons";
-
+import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import EventIcon from '@material-ui/icons/Event';
+import ContactsIcon from '@material-ui/icons/Contacts';
+import CardMembershipIcon from '@material-ui/icons/CardMembership';
 import Login from "./../commom/Login/index";
 import Taikhoan from "./../component/Page/TaiKhoan/index";
 import NotFound from "./../component/Page/notFound/index";
@@ -65,14 +68,14 @@ export const ROUTES = [
     name: "Quảng Cáo ",
     exact: true,
     component: QuangCao,
-    icon: <HomeIcon> </HomeIcon>,
+    icon: <CardMembershipIcon> </CardMembershipIcon>,
   },
   {
     path: "/TinTuc",
     name: "Tin Tức",
     exact: true,
     component: TinTuc,
-    icon: <HomeIcon> </HomeIcon>,
+    icon: <EventIcon> </EventIcon>,
   },
   {
     path: "/ThuongHieu",
@@ -107,7 +110,7 @@ export const ROUTES = [
     name: "Khách hàng",
     exact: false,
     component: KhachHang,
-    icon: <PersonAdd> </PersonAdd>,
+    icon: <ContactsIcon> </ContactsIcon>,
   },
   {
     path: "/donhang",
@@ -128,7 +131,7 @@ export const ROUTES = [
     name: "Vận chuyển",
     exact: false,
     component: KhuyenMai,
-    icon: <AddLocation> </AddLocation>,
+    icon: <DriveEtaIcon> </DriveEtaIcon>,
   },
   // {
   //   path: "/phanhoi",

@@ -14,8 +14,8 @@
 
 form.form-signin {
     background: #5c5cd8;
-    width: 400px;
-    height: 300px;
+    width: 500px;
+    height: 280px;
     border-radius: 5px;
     margin: auto 0;
 }
@@ -25,6 +25,7 @@ form.form-signin {
     text-align: center;
     width: 100%;
     font-size: 25px;
+    font-weight: bold;
     margin: auto 0;
 }
 
@@ -33,7 +34,7 @@ form.form-signin {
 }
 
 button.btn.btn-lg.btn-primary.btndn {
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 15px;
     height: 40px;
     width: 130px;
@@ -53,13 +54,24 @@ button.btn.btn-lg.btn-primary.btndn {
 }
 
 .login-left {
-    width: 28%;
-    height: 30px;
+    width: 100px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 input.login-rigth {
-    width: 55%;
-    height: 30px;
+    width: 70%;
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 8px;
+    border: unset;
+}
+
+input.login-rigth:focus-visible {
+    outline: none;
 }
 
 .thongbao {
