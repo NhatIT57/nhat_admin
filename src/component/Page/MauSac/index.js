@@ -139,7 +139,7 @@ function MauSac(props) {
             />
           </div>
         </div>
-        <Table striped bordered hover variant="dark" className="table_type">
+        <Table striped bordered hover   className="table_type">
           <thead>
             <tr>
               <th> STT </th> <th> Màu sắc </th> <th> Hình ảnh </th>

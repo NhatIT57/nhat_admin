@@ -234,7 +234,7 @@ function DonHang(props) {
         </div>
         <div className="list-donhang">
           <div className="listusers">
-            <Table striped bordered hover variant="dark" className="table_type">
+            <Table striped bordered hover   className="table_type">
               <thead>
                 <tr>
                   <th scope="col">ID</th>

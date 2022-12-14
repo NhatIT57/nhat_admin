@@ -1,8 +1,9 @@
 .donhang {
     padding-top: 100px;
-    width: 100%;
+    width: calc(100% - 250px);
     display: flex;
     flex-wrap: wrap;
+    margin-left: 250px;
 }
 
 .donhang-content {

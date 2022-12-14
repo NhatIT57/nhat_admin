@@ -242,7 +242,7 @@ function KhuyenMai(props) {
           striped
           bordered
           hover
-          variant="dark"
+           
         >
           <thead>
             <tr>

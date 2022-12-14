@@ -142,7 +142,7 @@ function XemDonHang(props) {
           </div>
 
           <div className="listusers">
-            <Table striped bordered hover variant="dark" className="table_type">
+            <Table striped bordered hover   className="table_type">
               <tbody>
                 <tr>
                   <td>Người gửi</td>

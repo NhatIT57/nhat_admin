@@ -224,7 +224,7 @@ function Thongke(props) {
               <></>
             )}
 
-            <Table striped bordered hover variant="dark" className="table_type">
+            <Table striped bordered hover   className="table_type">
               <thead>
                 <tr>
                   <th scope="col" colSpan={7} className="text-center fw-bold">
@@ -278,7 +278,7 @@ function Thongke(props) {
                 striped
                 bordered
                 hover
-                variant="dark"
+                 
                 className="table_type"
               >
                 <thead>

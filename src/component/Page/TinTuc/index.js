@@ -163,7 +163,7 @@ function LoaiSanPham(props) {
           striped
           bordered
           hover
-          variant="dark"
+           
           className="table_type khuyenmai"
         >
           <thead>

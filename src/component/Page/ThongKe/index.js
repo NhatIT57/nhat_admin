@@ -8,9 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import DatePicker from "react-datepicker";
 import * as echarts from 'echarts';
 
-var chartDom = document.getElementById('main');
-var myChart = echarts.init(chartDom);
-var option;
 
 function Thongke(props) {
 
@@ -19,6 +16,9 @@ function Thongke(props) {
 
   const [toDate, settoDate] = useState(new Date());
   const [fromDate, setfromDate] = useState(new Date());
+
+  const [giay, setGiay] = useState([]);
+  const [loaiGiay, setLoaiGiay] = useState([]);
 
   const handleformtodate = (date) => {
     settoDate(date);
@@ -30,117 +30,90 @@ function Thongke(props) {
 
 
   async function submitSP(){
+    var dataGiay = []
+    var dataGiayIndex = [];
+    var dataGiayValue = []
+
+
+    var dataLoaiGiay = []
+    var dataLoaiGiayIndex = [];
+    var dataLoaiGiayValue = []
     await api.getGiayHotByMonth({to_date: Moment(toDate).format('YYYY-MM-DD'), from_date: Moment(fromDate).format('YYYY-MM-DD') }).then((res) => {
       if (res.status === 200) {
         setDataGiayByMonth(res.data.data);
+         if(res.data.data.length>0){
+          res.data.data.forEach((item, index)=>{
+            dataGiay.push(item.ten_giay);
+            dataGiayIndex.push(index+1);
+            dataGiayValue.push(item.tong_tien)
+          })
+         }
+         setGiay(dataGiay);
       }
     });
     await api.getLoaiGiayHotByMonth({to_date: Moment(toDate).format('YYYY-MM-DD'), from_date: Moment(fromDate).format('YYYY-MM-DD') }).then((res) => {
       if (res.status === 200) {
         setDataLoaiGiayByMonth(res.data.data);
+        if(res.data.data.length>0){
+         res.data.data.forEach((item, index)=>{
+           dataLoaiGiay.push(item.ten_loai_giay);
+           dataLoaiGiayIndex.push(index+1);
+           dataLoaiGiayValue.push(item.tong_tien)
+         });
+        }
+        setLoaiGiay(dataLoaiGiay);
       }
     });
+
+
+    var chartDom = document.getElementById('main');
+    var myChart = echarts.init(chartDom);
+    var option;
     option = {
-      title: {
-        text: 'Stacked Area Chart'
+      xAxis: {
+        type: 'category',
+        data: dataGiayIndex
       },
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'cross',
-          label: {
-            backgroundColor: '#6a7985'
-          }
-        }
+      yAxis: {
+        type: 'value'
       },
-      legend: {
-        data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-      },
-      toolbox: {
-        feature: {
-          saveAsImage: {}
-        }
-      },
-      grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-      },
-      xAxis: [
-        {
-          type: 'category',
-          boundaryGap: false,
-          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        }
-      ],
-      yAxis: [
-        {
-          type: 'value'
-        }
-      ],
       series: [
         {
-          name: 'Email',
-          type: 'line',
-          stack: 'Total',
-          areaStyle: {},
-          emphasis: {
-            focus: 'series'
-          },
-          data: [120, 132, 101, 134, 90, 230, 210]
-        },
-        {
-          name: 'Union Ads',
-          type: 'line',
-          stack: 'Total',
-          areaStyle: {},
-          emphasis: {
-            focus: 'series'
-          },
-          data: [220, 182, 191, 234, 290, 330, 310]
-        },
-        {
-          name: 'Video Ads',
-          type: 'line',
-          stack: 'Total',
-          areaStyle: {},
-          emphasis: {
-            focus: 'series'
-          },
-          data: [150, 232, 201, 154, 190, 330, 410]
-        },
-        {
-          name: 'Direct',
-          type: 'line',
-          stack: 'Total',
-          areaStyle: {},
-          emphasis: {
-            focus: 'series'
-          },
-          data: [320, 332, 301, 334, 390, 330, 320]
-        },
-        {
-          name: 'Search Engine',
-          type: 'line',
-          stack: 'Total',
-          label: {
-            show: true,
-            position: 'top'
-          },
-          areaStyle: {},
-          emphasis: {
-            focus: 'series'
-          },
-          data: [820, 932, 901, 934, 1290, 1330, 1320]
+          data: dataGiayValue,
+          type: 'bar',
+          showBackground: true,
+          backgroundStyle: {
+            color: 'rgba(180, 180, 180, 0.2)'
+          }
         }
       ]
     };
-    
     option && myChart.setOption(option);
+
+    var chartDom1 = document.getElementById('main1');
+    var myChart1 = echarts.init(chartDom1);
+    var option1;
+    option1 = {
+      xAxis: {
+        type: 'category',
+        data: dataLoaiGiayIndex
+      },
+      yAxis: {
+        type: 'value'
+      },
+      series: [
+        {
+          data: dataLoaiGiayValue,
+          type: 'bar',
+          showBackground: true,
+          backgroundStyle: {
+            color: 'rgba(180, 180, 180, 0.2)'
+          }
+        }
+      ]
+    };
+    option1 && myChart1.setOption(option1);
   }
-
-
 
   return (
     <div className="homePage-admin">
@@ -176,7 +149,7 @@ function Thongke(props) {
               </div>
               <button type="button" className="btn btn-primary" onClick={submitSP}>Thực hiện</button>
             </div>
-            <Table striped bordered hover variant="dark" className="table_type">
+            <Table striped bordered hover   className="table_type">
               <thead>
                 <tr>
                   <th scope="col" colSpan={4} className="text-center fw-bold">
@@ -214,38 +187,16 @@ function Thongke(props) {
               </tbody>
             </Table>
           </div>
-          <div>
-                <div id='main'></div>
+          <div style={{marginLeft:'10px', height: giay.length > 0 ? '500px' : '0px'}} className='d-flex'>
+              <div style={{height: giay.length > 0 ? '500px' : '0px', width: '50%'}} id='main'></div>
+              <div style={{ width: '50%', display: 'flex',marginTop: '10px', flexWrap: 'wrap'}}>
+                {giay.length > 0 && giay.map((item, index)=>{
+                    return <div style={{width: '100%'}}>{index+1 +': '+item}</div>
+                })}
+              </div>
           </div>
           <div className="mt-5">
-          {/* <div className="d-flex">
-              <div className="form-group d-flex mr-3 align-items-center">
-                <div className="mr-1">Từ</div>
-               <DatePicker
-                className="heigth_date" 
-                  selected={fromDateLG}
-                  value={fromDateLG}
-                  onChange={(date) => handleformfromdateLG(date)}
-                  showTimeSelect
-                  dateFormat="dd-MM-yyyy"
-                  name="from_date"
-                />
-              </div>
-              <div className="form-group d-flex mr-3 align-items-center">
-                <div className="mr-1">Đến</div>
-                <DatePicker
-                  className="heigth_date"
-                  selected={toDateLG}
-                  value={toDateLG}
-                  onChange={(date) => handleformtodateLG(date)}
-                  showTimeSelect
-                  dateFormat="dd-MM-yyyy"
-                  name="to_date"
-                />
-              </div>
-              <button type="button" className="btn btn-primary" onClick={submitLG}>Thực hiện</button>
-            </div> */}
-            <Table striped bordered hover variant="dark" className="table_type">
+            <Table striped bordered hover   className="table_type">
               <thead>
                 <tr>
                   <th scope="col" colSpan={4} className="text-center fw-bold">
@@ -282,6 +233,14 @@ function Thongke(props) {
                 )}
               </tbody>
             </Table>
+            <div style={{marginLeft:'10px', height: loaiGiay.length > 0 ? '500px' : '0px'}} className='d-flex'>
+              <div style={{height: loaiGiay.length > 0 ? '500px' : '0px', width: '50%'}} id='main1'></div>
+              <div style={{ width: '50%', display: 'flex',marginTop: '10px', flexWrap: 'wrap'}}>
+                {loaiGiay.length > 0 && loaiGiay.map((item, index)=>{
+                    return <div key={item} style={{width: '100%'}}>{index+1 +': '+item}</div>
+                })}
+              </div>
+          </div>
           </div>
         </div>
       </div>

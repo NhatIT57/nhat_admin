@@ -6,3 +6,11 @@
     position: fixed;
     z-index: 99;
 }
+
+.product-admin {
+    width: calc(100% - 250px);
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    margin-left: 250px;
+}

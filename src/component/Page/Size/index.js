@@ -123,7 +123,7 @@ function Size(props) {
 						<input type="text" value={searchSize} placeholder="Nhập tên size" onChange={searchSizes} />
 					</div>
 				</div>
-				<Table striped bordered hover variant="dark" className="table_type">
+				<Table striped bordered hover   className="table_type">
 					<thead>
 						<tr>
 							<th className="width-DK"> STT </th>

@@ -85,10 +85,10 @@ function Slidebar(props) {
   return (
     <IconContext.Provider className="navbar-slide" value={{ color: "#fff" }}>
       <div className="navbar">
-        <div className="navbar-base">
-          <Link to="#" className="menu-bars">
+        <div className="navbar-base d-flex justify-content-end">
+          {/* <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
-          </Link>
+          </Link> */}
           <div className="menu-bars-right d-flex">
             <div className="cart-product">
               <div className="cart-poduct-sl">{token.length}</div>
@@ -122,7 +122,7 @@ function Slidebar(props) {
           </div>
         </div>
       </div>
-      <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
+      <nav className={'nav-menu active'}>
         <ul className="nav-menu-items">
           <li className="navbar-toggle">
             <Link to="#" className="menu-bars">

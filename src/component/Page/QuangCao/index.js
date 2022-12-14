@@ -163,12 +163,13 @@ function LoaiSanPham(props) {
           striped
           bordered
           hover
-          variant="dark"
           className="table_type khuyenmai"
         >
           <thead>
             <tr>
-              <th> STT </th> <th> Hình ảnh </th> <th> Trạng thái </th>
+              <th> STT </th> 
+              <th> Hình ảnh </th> 
+              <th> Trạng thái </th>
               <th>Ngày tạo</th>
               <th className="width-DK"> Điều khiển </th>
             </tr>
@@ -186,7 +187,7 @@ function LoaiSanPham(props) {
                           alt=""
                         />
                       </td>
-                      {post.trang_thai === 1 ? (
+                      <td className="d-flex justify-content-center">{post.trang_thai === 1 ? (
                           <Button
                             onClick={() => updateTrangThai(post)}
                             variant="success"
@@ -200,7 +201,7 @@ function LoaiSanPham(props) {
                           >
                             Không còn hoạt động
                           </Button>
-                        )}
+                        )}</td>
                       <td>{Moment(post.date_create).format("YYYY-MM-DD")}</td>
                       <td className="Controls_type">
                         <Button
