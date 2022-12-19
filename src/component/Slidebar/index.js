@@ -148,7 +148,7 @@ function Slidebar(props) {
           })}
           <li className="row">
             <div>
-              <Link id="title" className="text-lefts"><TrendingUp className="mx-2"></TrendingUp>Thống kê</Link>
+              <Link id="title" className="text-lefts" to="#"><TrendingUp className="mx-2"></TrendingUp>Thống kê</Link>
               <div className="ml-3">
               <Link id="title" className="dropdown-item text-lefts" to="/ThongKe">
                   Các sản phẩm bán chạy

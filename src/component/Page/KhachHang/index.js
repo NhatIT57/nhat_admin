@@ -143,7 +143,7 @@ function KhachHang(props) {
     <div className="donhang">
       <div className="donhang-content">
         <div className="search">
-          <h3 className="text-center title_khuyenmai">Khách hàng</h3>
+          {/* <h3 className="text-center title_khuyenmai">Khách hàng</h3> */}
           <div className="d-flex align-items-center">
             <div className="btnsearch">
               <input

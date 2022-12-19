@@ -139,7 +139,7 @@ function MauSac(props) {
             />
           </div>
         </div>
-        <Table striped bordered hover   className="table_type">
+        <Table striped bordered hover className="table_type">
           <thead>
             <tr>
               <th> STT </th> <th> Màu sắc </th> <th> Hình ảnh </th>
@@ -147,12 +147,11 @@ function MauSac(props) {
             </tr>
           </thead>
           <tbody>
-            
             {ListMauSac
               ? ListMauSac.map((post, index) => {
                   return (
-                    <tr key={index + 1}>
-                      <td> {index + 1} </td> <td> {post.ten_mau_sac} </td>
+                    <tr key={post.ten_mau_sac + 1}>
+                      <td> {post.ten_mau_sac + 1} </td> <td> {post.ten_mau_sac} </td>
                       <td>
                         <img
                           src={`http://localhost:8080/images/${post.hinh_anh}`}

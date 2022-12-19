@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./homePage.scss";
 import * as api from "../../../api/thong_ke";
 import Table from "react-bootstrap/Table";
-import "react-datepicker/dist/react-datepicker.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "react-datepicker/dist/react-datepicker.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import Pagination from "react-js-pagination";
 function Thongke(props) {
 
