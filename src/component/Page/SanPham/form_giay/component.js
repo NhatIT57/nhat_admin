@@ -13,11 +13,11 @@ import validateMS from "./validateForm/validateFormMauSac";
 import * as apiGiay from "./../../../../api/giay";
 import Moment from "moment";
 import Carousel from "react-bootstrap/Carousel";
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import NavigateNextIcon from "@mui/icons-material/NavigateNext";
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import CloseIcon from "@material-ui/icons/Close";
+import CloseIcon from "@mui/icons-material/Close";
 import ComponentMauSac from "./../../MauSac/form_mau_sac/component";
 
 function Component_type(props) {

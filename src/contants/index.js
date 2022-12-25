@@ -8,7 +8,7 @@ import PhanHoi from "./../component/Page/PhanHoi/index";
 import TrangChu from "./../component/Page/TrangChu/index";
 import MauSac from "./../component/Page/MauSac/index";
 import Size from "./../component/Page/Size/index";
-import HomeIcon from "@material-ui/icons/Home";
+import HomeIcon from '@mui/icons-material/Home';
 import XemDonHang from "./../component/Page/XemDonHang/index";
 import ThongKe from "./../component/Page/ThongKe/index";
 import DoanhThu from "./../component/Page/DoanhThu/index";
@@ -16,23 +16,19 @@ import TonKho from "./../component/Page/TonKho/index";
 import TinhThanhPho from "./../component/Page/TinhThanhPho/index";
 import QuangCao from "./../component/Page/QuangCao/index";
 import TinTuc from "./../component/Page/TinTuc/index";
-
-import {
-  AssignmentTurnedIn,
-  AddShoppingCart,
-  PersonAdd,
-  ListAlt,
-  Timer10,
-  RecordVoiceOver,
-  ColorLens,
-  AspectRatio,
-  TrendingUp,
-  AddLocation
-} from "@material-ui/icons";
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
-import EventIcon from '@material-ui/icons/Event';
-import ContactsIcon from '@material-ui/icons/Contacts';
-import CardMembershipIcon from '@material-ui/icons/CardMembership';
+import AssignmentTurnedIn from '@mui/icons-material/AssignmentTurnedIn';
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import ListAlt from '@mui/icons-material/ListAlt';
+import Timer10 from '@mui/icons-material/Timer10Select';
+import RecordVoiceOver from '@mui/icons-material/RecordVoiceOver';
+import ColorLens from '@mui/icons-material/ColorLens';
+import AspectRatio from '@mui/icons-material/AspectRatio';
+import TrendingUp from '@mui/icons-material/TrendingUp';
+import DriveEtaIcon from '@mui/icons-material/DriveEta';
+import EventIcon from '@mui/icons-material/Event';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import CardMembershipIcon from '@mui/icons-material/CardMembership';
 import Login from "./../commom/Login/index";
 import Taikhoan from "./../component/Page/TaiKhoan/index";
 import NotFound from "./../component/Page/notFound/index";

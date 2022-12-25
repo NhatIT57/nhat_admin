@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./homePage.scss";
-import {
-  AssignmentTurnedIn,
-  AddShoppingCart,
-  PersonAdd,
-  ListAlt,
-} from "@material-ui/icons";
+import AddShoppingCart from '@mui/icons-material/AddShoppingCart';
+import AssignmentTurnedIn from '@mui/icons-material/AssignmentTurnedIn';
 import * as api from "./../../../api/thong_ke";
 import * as apiQuangCao from "./../../../api/quang_cao";
 

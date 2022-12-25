@@ -1,5 +1,5 @@
 import React from 'react';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 import PropTypes from 'prop-types';
 import { Container } from 'react-bootstrap';
 import './index.scss';

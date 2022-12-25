@@ -7,7 +7,7 @@ import "./Slidebar.scss";
 import { IconContext } from "react-icons";
 import * as routes from "./../../contants/index";
 import { useHistory } from "react-router-dom";
-import { TrendingUp } from "@material-ui/icons";
+import TrendingUp from '@mui/icons-material/TrendingUp';
 // import WebSocket from 'ws';
 
 function Slidebar(props) {
