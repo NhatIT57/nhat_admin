@@ -3,7 +3,7 @@ import "./App.scss";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import * as contant from "./contants/index";
 import Adminroute from "./commom/AdminRoute/index";
-import {ReactNotifications} from "react-notifications-component";
+import ReactNotifications from "react-notifications-component";
 import TypeLoaiGiay from "./component/Page/LoaiSanPham/form_loai_giay/index";
 import FormGiay from "./component/Page/SanPham/form_giay/index";
 import "bootstrap/dist/css/bootstrap.min.css";
