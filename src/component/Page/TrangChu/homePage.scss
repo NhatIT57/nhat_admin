@@ -82,14 +82,14 @@
         margin-top: 5px;
     }
     
-    @media screen and (min-width: 768px)and(max-width: 1060px) {
+    @media screen and (min-width: 768px) and (max-width: 1060px) {
         .homepage {
             width: 100%;
             min-height: 100vh;
         }
     }
     
-    @media screen and (min-width: 960px)and(max-width: 1200px) {
+    @media screen and (min-width: 960px) and (max-width: 1200px) {
         .homepage {
             width: 100%;
             min-height: 100vh;
@@ -104,7 +104,7 @@
         }
     }
     
-    @media screen and (min-width: 480px)and(max-width: 950px) {
+    @media screen and (min-width: 480px) and (max-width: 950px) {
         .category-homePage {
             display: flex;
             flex-wrap: wrap;
